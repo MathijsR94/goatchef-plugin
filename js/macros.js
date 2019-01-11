@@ -10,7 +10,7 @@
 
     var userGoal =
       GoatchefSingleton.macroMap[localStorage.getItem('goal')] ||
-      GoatchefSingleton.macroMap['0.8'];
+      GoatchefSingleton.macroMap['0'];
     // setProgress();
 
     document.addEventListener('updateNumMeals', function(e) {

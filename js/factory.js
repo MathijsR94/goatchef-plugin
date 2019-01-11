@@ -22,7 +22,7 @@ var GoatchefSingleton = (function() {
   };
   var recipes = JSON.parse(gcMacros.recipes);
 
-  var goal = localStorage.getItem('goal') || '1'; // Healthy Balance
+  var goal = localStorage.getItem('goal') || '0'; // Healthy Balance
   var macros = gcMacros.macros;
 
   var events = {
@@ -41,11 +41,11 @@ var GoatchefSingleton = (function() {
   };
   var completedRecipes = [];
   var macroMap = {
-    '0.8': 'cutting',
-    '0.9': 'weightLoss',
-    '1': 'healthyBalance',
-    '1.1': 'bulking',
-    '1.2': 'dirtyBulking'
+    '-400': 'cutting',
+    '-300': 'weightLoss',
+    '0': 'healthyBalance',
+    '300': 'bulking',
+    '500': 'dirtyBulking'
   };
   function createInstance() {
     var object = new Object();
