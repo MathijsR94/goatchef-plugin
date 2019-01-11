@@ -1,0 +1,55 @@
+.notify {
+  display: flex;
+  padding: 20px;
+  background-color: #fedd34;
+  flex-wrap: wrap;
+  color: #726849;
+  border-radius: 1px;
+  margin-bottom: 10px;
+
+  &__message {
+    flex-basis: 75%;
+    margin-bottom: 5px;
+    flex: 1;
+
+    .bold {
+      font-weight: 700;
+    }
+
+    @media screen and (max-width: 768px) {
+      margin-bottom: 1.2em;
+    }
+  }
+
+  &__button-container {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+  }
+
+  &__button {
+    outline: 0;
+    border: 0;
+    color: #726849;
+    padding: 6px 10px;
+    margin-right: 10px;
+    border-radius: 3px;
+    background-color: transparent;
+    border: 2px solid #726849;
+
+    &:hover {
+      background-color: lighten(#fedd34, 10%);
+    }
+
+    @media screen and (max-width: 768px) {
+      margin-bottom: 10px;
+      margin-right: 0;
+      flex: 1;
+    }
+  }
+}

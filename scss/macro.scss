@@ -1,0 +1,97 @@
+// Progress Bars
+progress,
+progress[role] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background-size: auto;
+  height: 3px;
+  width: 100%;
+}
+
+// The unordered list
+.macro-list {
+  list-style: none;
+  margin: 0;
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// The list item
+.macro {
+  position: relative;
+  flex: 1 0 100%;
+  ::-webkit-progress-value,
+  ::-moz-progress-bar,
+  progress {
+    -webkit-animation: bar-fill 2s;
+    width: 0px;
+  }
+  &:last-child {
+    margin: 0;
+  }
+
+  &__current {
+    position: absolute;
+    top: 50%;
+    padding: 2px 5px;
+    left: 0;
+    background-color: #fff;
+    color: #222;
+    border-radius: 2px;
+    transform: translateY(-50%);
+  }
+
+  &__total {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+// Style the bar colors
+.macro-1::-webkit-progress-value {
+  background-color: #fff;
+}
+
+.macro-1::-moz-progress-bar {
+  background-color: #fff;
+}
+
+.macro-2::-webkit-progress-value {
+  background-color: #fff;
+}
+
+.macro-2::-moz-progress-bar {
+  background-color: #fff;
+}
+
+.macro-3::-webkit-progress-value {
+  background-color: #fff;
+}
+
+.macro-3::-moz-progress-bar {
+  background-color: #fff;
+}
+
+.macro-4::-webkit-progress-value {
+  background-color: #fff;
+}
+
+.macro-4::-moz-progress-bar {
+  background-color: #fff;
+}
+// Animation Keyframes
+@-webkit-keyframes bar-fill {
+  0% {
+    width: 0;
+  }
+}
+
+@keyframes bar-fill {
+  0% {
+    width: 0;
+  }
+}

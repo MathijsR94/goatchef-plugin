@@ -1,0 +1,136 @@
+<div class="modal" tabindex="-1" role="dialog" id="homepage-calculator">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form method="post" class="calc-form">
+          <div id="personalInfo">
+            <h2>Persoonlijke informatie</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="gender">Geslacht</label>
+                <div class="btn-group" id="gender" role="group">
+                  <button
+                    type="button"
+                    id="male"
+                    class="btn btn-primary selected"
+                    data-gender="male"
+                  >
+                    <i class="fa fa-check"></i>Man
+                  </button>
+                  <button
+                    type="button"
+                    id="female"
+                    class="btn btn-primary"
+                    data-gender="female"
+                  >
+                    <i class="fa fa-check"></i>Vrouw
+                  </button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="age">Leeftijd (jr)</label>
+                <input
+                  id="age"
+                  type="number"
+                  name="length"
+                  min="12"
+                  max="100"
+                  placeholder="Leeftijd"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="length">Lengte (cm)</label>
+                <input
+                  id="length"
+                  type="number"
+                  name="length"
+                  min="100"
+                  max="250"
+                  placeholder="Lengte"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="weight">Gewicht (kg)</label>
+                <input
+                  id="weight"
+                  type="number"
+                  name="weight"
+                  min="30"
+                  max="350"
+                  placeholder="Gewicht"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div id="workAndSports">
+            <h2>Activiteiten</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="workSelect">Studie en/of werk</label>
+                <select id="workSelect" required>
+                  <option value="-1" selected>- Kies inspanning -</option>
+                  <option value="1.2">Geen inspanning</option>
+                  <option value="1.375">Lichte inspanning</option>
+                  <option value="1.55">Gemiddelde inspanning</option>
+                  <option value="1.725">Zware inspanning</option>
+                  <option value="1.9">Zeer zware inspanning</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="sportSelect">Sport en/of vrije tijd</label>
+                <select id="sportSelect" required>
+                  <option value="-1" selected>- Kies inspanning -</option>
+                  <option value="1.2">Geen inspanning</option>
+                  <option value="1.375">Lichte inspanning</option>
+                  <option value="1.55">Gemiddelde inspanning</option>
+                  <option value="1.725">Zware inspanning</option>
+                  <option value="1.9">Topsporter</option>
+                </select>
+              </div>
+            </div>
+            <div id="goals">
+              <h2>Doelstelling</h2>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="goal">Persoonlijk doel</label>
+                  <select id="goal" required>
+                    <option value="-1" selected>- Kies doel -</option>
+                    <option value="-400">Afvallen</option>
+                    <option value="-300">Droogtrainen (cutten)</option>
+                    <option value="0">Gezond evenwicht</option>
+                    <option value="+300">Spieropbouw (bulken)</option>
+                    <option value="+500">Massa (heavy bulken)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="total-calories"
+                    >Dagelijkse aanbevolen hoeveelheid kcal</label
+                  >
+                  <input
+                    type="text"
+                    disabled
+                    id="total-calories"
+                    name="textbox"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="add-kcal">
+          Invullen
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Annuleren
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

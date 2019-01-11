@@ -1,0 +1,63 @@
+#counter .sh-column-wrapper {
+  margin: 0 auto;
+}
+.hidden {
+  display: none;
+}
+
+#homepage-meals {
+  z-index: 1001;
+  background-color: transparent;
+
+  .header-icon {
+    max-height: 75px;
+    margin-bottom: 20px;
+  }
+
+  & > div:first-child {
+    position: relative;
+    top: -230px;
+    max-width: 80% !important;
+  }
+}
+
+.form-row {
+  display: flex;
+}
+
+.form-row .form-group,
+.form-row .form-select,
+.form-row .form-group-flex {
+  width: 50%;
+  padding: 0 0.5em 0 0;
+}
+
+#testimonials {
+  .sh-testimonials-quote,
+  .sh-testimonials-name h3,
+  .icon-arrow-left,
+  .icon-arrow-right {
+    color: #fff;
+  }
+
+  .sh-testimonials-quote-icon {
+    display: none;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+  }
+}
+
+.primary-desktop {
+  z-index: 1100;
+}
+
+.modal {
+  z-index: 3000;
+}

@@ -1,0 +1,46 @@
+button:focus,
+.btn:focus {
+  outline: 0;
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $primary-color;
+  &:hover {
+    background-color: #fff;
+    color: $primary-color;
+    border-color: $primary-color;
+  }
+  &.selected {
+    color: $primary-color;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    border-color: $primary-color;
+
+    i {
+      margin-right: 5px;
+      display: inline-block;
+      font-size: 10px;
+    }
+  }
+}
+
+.calc-button {
+  padding: 0 27px 0 7px;
+}
+
+.goatchef-button {
+  padding: 4px 0;
+}
+
+#homepage-calculator {
+  .btn-group {
+    flex: 1;
+
+    .btn {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+input {
+  &::placeholder {
+    color: #cacaca;
+    opacity: 1;
+  }
+  &:disabled {
+    color: #cacaca;
+  }
+}
+
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='tel'],
+input[type='date'],
+select {
+  padding: 0 20px;
+  line-height: 30px !important;
+}
+
+select {
+  background-color: #fff;
+}
+
+input[type='number'] {
+  text-align: right;
+  border: 1px solid #e3e3e3;
+  color: #8d8d8d;
+  display: inline-block;
+  -webkit-appearance: none;
+}
+
+@media screen and (max-width: 550px) {
+  input[type='number'] {
+    text-align: center;
+  }
+}

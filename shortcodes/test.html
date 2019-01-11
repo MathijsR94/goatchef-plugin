@@ -1,0 +1,318 @@
+<div class="modal" tabindex="-1" role="dialog" id="homepage-calculator">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="main">
+          <div class="acc-wizard">
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default active">
+                <div class="panel-heading" id="headingOne">
+                  <h3>
+                    <a
+                      href="#collapseOne"
+                      data-toggle="collapse"
+                      data-parent="#accordion"
+                      >Persoonlijke informatie</a
+                    >
+                  </h3>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                    <form method="post" class="calc-form">
+                      <fieldset>
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="gender">Geslacht</label>
+                            <div class="btn-group" id="gender" role="group">
+                              <button
+                                type="button"
+                                id="male"
+                                class="btn btn-primary selected"
+                                data-gender="male"
+                              >
+                                <i class="fa fa-check"></i>Man
+                              </button>
+                              <button
+                                type="button"
+                                id="female"
+                                class="btn btn-primary"
+                                data-gender="female"
+                              >
+                                <i class="fa fa-check"></i>Vrouw
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="age">Leeftijd (jaar)</label>
+                            <input
+                              id="age"
+                              type="number"
+                              name="length"
+                              min="12"
+                              max="100"
+                              placeholder="Leeftijd"
+                              required
+                            />
+
+                            <label for="weight">Gewicht (kg)</label>
+                            <input
+                              id="weight"
+                              type="number"
+                              name="weight"
+                              min="30"
+                              max="350"
+                              placeholder="Gewicht"
+                              required
+                            />
+                          </div>
+                          <div class="form-group">
+                            <label for="length">Lengte (cm)</label>
+                            <input
+                              id="length"
+                              type="number"
+                              name="length"
+                              min="100"
+                              max="250"
+                              placeholder="Lengte"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" id="headingTwo">
+                  <h3>
+                    <a
+                      href="#collapseTwo"
+                      data-toggle="collapse"
+                      data-parent="#accordion"
+                      >Werk en sport</a
+                    >
+                  </h3>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                  <div class="panel-body">
+                                          <fieldset>
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="workSelect">Werk en inspanning</label>
+                            <select id="workSelect" required>
+                              <option value="1.1">Geen (Student)</option>
+                              <option value="1.3">Licht (Kantoor)</option>
+                              <option value="1.4"
+                                >Gemiddeld (Verpleegkundige)</option
+                              >
+                              <option value="1.6">Zwaar (Bouwvakker)</option>
+                              <option value="1.8"
+                                >Zeer zwaar (Stratenmaker)</option
+                              >
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="daysWork"
+                              >Hoeveel dagen in de week werk je?</label
+                            >
+                            <div
+                              class="btn-group"
+                              id="daysWork"
+                              role="group"
+                              aria-label="..."
+                            >
+                              <button
+                                type="button"
+                                id="10"
+                                class="btn btn-primary selected"
+                              >
+                                <i class="fa fa-check"></i>0
+                              </button>
+                              <button
+                                type="button"
+                                id="11"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>1
+                              </button>
+                              <button
+                                type="button"
+                                id="12"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>2
+                              </button>
+                              <button
+                                type="button"
+                                id="13"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>3
+                              </button>
+                              <button
+                                type="button"
+                                id="14"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>4
+                              </button>
+                              <button
+                                type="button"
+                                id="15"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>5
+                              </button>
+                              <button
+                                type="button"
+                                id="16"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>6
+                              </button>
+                              <button
+                                type="button"
+                                id="17"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>7
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="sportSelect">Sport en inspanning</label>
+                            <select id="sportSelect" required>
+                              <option value="1.1">Geen</option>
+                              <option value="1.3"
+                                >Licht (Wandeleen met de
+                                hond/Huishouden)</option
+                              >
+                              <option value="1.4"
+                                >Gemiddeld
+                                (Tennis/Voetbal/Groepssporten)</option
+                              >
+                              <option value="1.6"
+                                >Zwaar (Krachttraining)</option
+                              >
+                              <option value="1.8"
+                                >Zeer zwaar (Duurloop/Professioneel
+                                sporten)</option
+                              >
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="daysSpor"
+                              >Hoeveel dagen in de week sport je?</label
+                            >
+                            <div class="btn-group" id="daysSpor" role="group">
+                              <button
+                                type="button"
+                                id="0"
+                                class="btn btn-primary selected"
+                              >
+                                <i class="fa fa-check"></i>0
+                              </button>
+                              <button
+                                type="button"
+                                id="1"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>1
+                              </button>
+                              <button
+                                type="button"
+                                id="2"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>2
+                              </button>
+                              <button
+                                type="button"
+                                id="3"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>3
+                              </button>
+                              <button
+                                type="button"
+                                id="4"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>4
+                              </button>
+                              <button
+                                type="button"
+                                id="5"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>5
+                              </button>
+                              <button
+                                type="button"
+                                id="6"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>6
+                              </button>
+                              <button
+                                type="button"
+                                id="7"
+                                class="btn btn-primary"
+                              >
+                                <i class="fa fa-check"></i>7
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" id="headingThree">
+                  <h3>
+                    <a
+                      href="#collapseThree"
+                      data-toggle="panel-collapse"
+                      data-parent="#accordion"
+                      >Doel</a
+                    >
+                  </h3>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                  <div class="panel-body">
+                      <fieldset>
+                        <div class="form-group">
+                            <label for="goal">Wat is je doel?</label>
+                            <select id="goal" required>
+                              <option value="0.8">Cutten</option>
+                              <option value="0.9">Afvallen</option>
+                              <option value="1">Op gewicht blijven</option>
+                              <option value="1.1">Bulken</option>
+                              <option value="1.2">Heavy bulken</option>
+                            </select>
+                          </div>
+                        </div>
+                        <label for="total-calories"
+                          >Jouw dagelijkse aanbevolen hoeveelheid kcal is:</label
+                        >
+                        <input type="text" disabled id="total-calories" name="textbox" />
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

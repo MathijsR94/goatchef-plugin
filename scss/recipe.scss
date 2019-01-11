@@ -1,0 +1,16 @@
+.recipe {
+  &__title {
+    padding: 2rem 0 0;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  &__nutritions {
+    display: flex;
+  }
+  &__nutrition {
+    padding-right: 1.5rem;
+    &-name {
+      font-weight: 700;
+    }
+  }
+}
