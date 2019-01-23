@@ -27,7 +27,6 @@ function gc_enqueue_scripts()
             'healthyBalance' => GoalEnum::HealthyBalance,
             'bulking' => GoalEnum::Bulking,
             'dirtyBulking' => GoalEnum::DirtyBulking,
-            'cardio' => GoalEnum::Cardio,
         ],
         'recipes' => $recipes,
     ));

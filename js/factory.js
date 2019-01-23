@@ -21,7 +21,7 @@ var GoatchefSingleton = (function() {
     snack3: ''
   };
   var recipes = JSON.parse(gcMacros.recipes);
-
+  var weight = localStorage.getItem('weight') || '0';
   var goal = localStorage.getItem('goal') || '0'; // Healthy Balance
   var macros = gcMacros.macros;
 
@@ -39,13 +39,14 @@ var GoatchefSingleton = (function() {
     snack2: { protein: 0, fat: 0, carbs: 0 },
     snack3: { protein: 0, fat: 0, carbs: 0 }
   };
+  var totalKcal = parseInt(localStorage.getItem('kcal')) || 0;
   var completedRecipes = [];
   var macroMap = {
-    '-400': 'cutting',
-    '-300': 'weightLoss',
+    '-400': 'weightLoss',
+    '-300': 'cutting',
     '0': 'healthyBalance',
-    '300': 'bulking',
-    '500': 'dirtyBulking'
+    '+300': 'bulking',
+    '+500': 'dirtyBulking'
   };
   function createInstance() {
     var object = new Object();
@@ -114,10 +115,39 @@ var GoatchefSingleton = (function() {
     }
   }
 
+  function calculateProteinNeeded() {
+    console.log(weight * macros[macroMap[goal]].factor.protein);
+    return weight * macros[macroMap[goal]].factor.protein;
+  }
+
+  function calculateFatNeeded() {
+    return weight * macros[macroMap[goal]].factor.fat;
+  }
+
+  function calculateCarbsNeeded() {
+    var userKcal = calculateTotalKcal(kcal);
+    var proteinNeeded = calculateProteinNeeded();
+    var fatNeeded = calculateFatNeeded();
+    console.log({ totalKcal, proteinNeeded, fatNeeded });
+    return (totalKcal - (proteinNeeded * 4 + fatNeeded * 9)) / 4;
+  }
+
+  function calculateTotalKcalNeeded() {
+    return (
+      calculateProteinNeeded() + calculateFatNeeded() + calculateCarbsNeeded()
+    );
+  }
   return {
+    user: {
+      weight: weight,
+      goal: goal,
+      kcal: kcal,
+      calculateFatNeeded: calculateFatNeeded,
+      calculateProteinNeeded: calculateProteinNeeded,
+      calculateCarbsNeeded: calculateCarbsNeeded,
+      calculateTotalKcalNeeded: calculateTotalKcalNeeded
+    },
     selectedRecipes: selectedRecipes,
-    goal: goal,
-    kcal: kcal,
     macros: macros,
     dispatchEvent: dispatchEvent,
     completedRecipes: completedRecipes,

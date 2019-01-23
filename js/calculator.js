@@ -127,6 +127,7 @@
       $('#num_cal').val($('#total-calories').val());
       localStorage.setItem('kcal', $('#total-calories').val());
       localStorage.setItem('goal', $('#goal').val());
+      localStorage.setItem('weight', parseFloat($('#weight').val()));
       $('#homepage-calculator').modal('toggle');
     }
   });

@@ -2,7 +2,7 @@
   $(document).ready(function() {
     // Lazy loading images with A3 Lazy Loading plugin
     $.lazyLoadXT.scrollContainer = '.homepage-products__list';
-
+    var user = GoatchefSingleton.user;
     var recipes = JSON.parse(gcProducts.recipes);
     var slicedRecipes = recipes.slice(0, recipes.length);
     var productContainers = $('.homepage-products__list');
@@ -346,9 +346,9 @@
 
       factory.setKcal(
         {
-          protein: parseInt(protein) / parseInt(recipe.serving_size),
-          fat: parseInt(fat) / parseInt(recipe.serving_size),
-          carbs: parseInt(carbs) / parseInt(recipe.serving_size)
+          protein: parseInt(protein),
+          fat: parseInt(fat),
+          carbs: parseInt(carbs)
         },
         type
       );
@@ -531,7 +531,7 @@
       var kcal = localStorage.getItem('kcal') || 2500;
       var userGoal = localStorage.getItem('goal') || GoatchefSingleton.goal;
       var userKcal = GoatchefSingleton.calculateTotalKcal(
-        GoatchefSingleton.kcal
+        GoatchefSingleton.user.kcal
       );
       var macros = GoatchefSingleton.macros;
 
@@ -548,8 +548,9 @@
           // return recipe;
         }
 
+        var carbsNeeded = kcal * user.calculateCarbsNeeded();
         var carbs = userKcal.carbs;
-        var carbsNeeded = kcal * macros[mappedGoal].gram.carbs;
+
         var recipeCarbs = recipe.nutrition.find(function(n) {
           return n.name === 'koolhydraten';
         });
@@ -560,7 +561,8 @@
         }
 
         var protein = userKcal.protein;
-        var proteinNeeded = kcal * macros[mappedGoal].gram.protein;
+        var proteinNeeded = kcal * user.calculateProteinNeeded();
+
         var recipeProtein = recipe.nutrition.find(function(n) {
           return n.name === 'eiwit';
         });
@@ -572,7 +574,7 @@
         }
 
         var fat = userKcal.fat;
-        var fatNeeded = kcal * macros[mappedGoal].gram.fat;
+        var fatNeeded = kcal * user.calculateFatNeeded();
         var recipeFat = recipe.nutrition.find(function(n) {
           return n.name === 'vet';
         });

@@ -103,6 +103,7 @@ $link-color: #1976d2;
     background-color: rgba(255, 255, 255, 0.9);
     transition: 0.25s ease-out;
     z-index: 2;
+    overflow: scroll;
 
     &.hidden {
       transform: translateY(100%);
@@ -187,6 +188,10 @@ $link-color: #1976d2;
 
     &:active {
       animation: squish 0.75s ease;
+    }
+
+    &.check {
+      background-color: $secondary-color;
     }
   }
 
