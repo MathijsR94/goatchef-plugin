@@ -2,20 +2,22 @@
   $(document).ready(function() {
     // Lazy loading images with A3 Lazy Loading plugin
     $.lazyLoadXT.scrollContainer = '.homepage-products__list';
-    var user = GoatchefSingleton.user;
-    var recipes = JSON.parse(gcProducts.recipes);
-    var slicedRecipes = recipes.slice(0, recipes.length);
-    var productContainers = $('.homepage-products__list');
-    var input = $('.homepage-products').find('[data-id="search-products"]');
-    var currentIndex = 0;
-    var currentSelectedRecipes = JSON.parse(localStorage.getItem('recipes'));
-    var progressNutrionItems = $('.progress-nutritions__item');
-    var steps = $('.steps__item');
-    var numMeals = $('#num_meals').val();
-    var detachedTabs;
-    var detachedCards;
-    var returnToEnd = false;
-    var tabIds = [
+    let detachedTabs;
+    let detachedCards;
+    let returnToEnd = false;
+    let currentIndex = 0;
+    const {
+      user,
+      recipes,
+      getCurrentSelectedRecipes,
+      getNumMeals,
+      tabTranslation
+    } = GoatchefSingleton;
+    const language = 'nl';
+    const currentSelectedRecipes = getCurrentSelectedRecipes();
+    const steps = $('.steps__item');
+    const numMeals = getNumMeals();
+    const tabIds = [
       'breakfast',
       'lunch',
       'diner',
@@ -25,19 +27,9 @@
       'end'
     ];
     var lastValue;
-    var factory = GoatchefSingleton;
     var debounceTime = 300;
     var loadingSearch = false;
     localStorage.removeItem('shouldDisplaySnackbar');
-
-    var translation = {
-      breakfast: 'ontbijt',
-      lunch: 'lunch',
-      diner: 'avondeten',
-      snack1: 'snack',
-      snack2: '2e Snack',
-      snack3: '3e Snack'
-    };
 
     init();
 
@@ -51,7 +43,7 @@
       // checkIfRecipesShouldBeHidden();
       var kcal = localStorage.getItem('kcal') || 2500;
 
-      factory.dispatchEvent('updateKcal', kcal);
+      GoatchefSingleton.dispatchEvent('updateKcal', kcal);
       $('.loader').addClass('hidden');
       $('.homepage-products').removeClass('hidden');
     }
@@ -72,8 +64,6 @@
     }
 
     function changeNumMeals() {
-      var steps = $('.steps .steps__item');
-
       detachedTabs.insertAfter(steps[numMeals - 1]);
       numMeals = $('#num_meals').val();
       hideTabs();
@@ -230,8 +220,7 @@
 
       localStorage.setItem('recipes', JSON.stringify(newValues));
 
-      factory.setRecipes(newValues);
-      // factory.dispatchEvent('updateNumMeals', $('#num_meals').val());
+      GoatchefSingleton.setRecipes(newValues);
 
       var types = ['breakfast', 'lunch', 'diner', 'snack1', 'snack2', 'snack3'];
       var isLast = types.indexOf(type) + 1 === parseInt(numMeals);
@@ -245,27 +234,19 @@
         'Goede keuze! Je hebt ' +
         recipe.recipe_title +
         ' gekozen als ' +
-        translation[type] +
+        tabTranslation[language][type] +
         nextMealMessage;
 
-      var shouldDisplaySnackbar = !localStorage.getItem(
+      const shouldDisplaySnackbar = !localStorage.getItem(
         'shouldDisplaySnackbar'
       );
-      var description = '';
+      const description = createDescription(
+        type,
+        isLast,
+        shouldDisplaySnackbar
+      );
       if (shouldDisplaySnackbar) {
-        description =
-          'Ander ' +
-          translation[type] +
-          '? Klik dan op ' +
-          translation[type] +
-          ' in het menu en kies een nieuw ' +
-          translation[type] +
-          '. Calorieën en voedingswaarden inzien? Bekijk jouw voortgang hieronder en zie precies hoeveel jouw lichaam binnenkrijgt met de gekozen recepten.';
         localStorage.setItem('shouldDisplaySnackbar', 'true');
-      } else {
-        description = isLast
-          ? 'Alles is gereed. Klik op aan de slag om verder te gaan.'
-          : '';
       }
 
       if (returnToEnd) {
@@ -344,7 +325,7 @@
           return n.name === 'koolhydraten';
         }).value || 0;
 
-      factory.setKcal(
+      GoatchefSingleton.setKcal(
         {
           protein: parseInt(protein),
           fat: parseInt(fat),
@@ -355,7 +336,6 @@
 
       checkIfRecipesShouldBeHidden();
 
-      // factory.completeRecipe(type);
       completeCurrentStep();
       activateNextStep();
     }
@@ -374,8 +354,33 @@
       // activateNextStep();
     }
 
+    function createDescription(type, isLast, shouldDisplaySnackbar) {
+      const translationStrings = {
+        nl: [
+          'Ander ',
+          '? Klik dan op ',
+          ' in het menu en kies een nieuw ',
+          '. Calorieën en voedingswaarden inzien? Bekijk jouw voortgang hieronder en zie precies hoeveel jouw lichaam binnenkrijgt met de gekozen recepten.',
+          'Alles is gereed. Klik op aan de slag om verder te gaan.'
+        ]
+      };
+      if (shouldDisplaySnackbar) {
+        return (
+          translationStrings[language][0] +
+          tabTranslation[language][type] +
+          translationStrings[language][1] +
+          tabTranslation[language][type] +
+          translationStrings[language][2] +
+          tabTranslation[language][type] +
+          translationStrings[language][3]
+        );
+      } else if (isLast) {
+        return translationStrings[language][4];
+      } else {
+        return '';
+      }
+    }
     function activateNextStep() {
-      var steps = $('.steps__item');
       activateChosenRecipeFabs();
 
       if (returnToEnd) {
@@ -410,7 +415,10 @@
     }
 
     function attachListeners() {
-      input.on('input', filterProducts);
+      const input = $('.homepage-products').find('[data-id="search-products"]');
+      if (input) {
+        input.on('input', filterProducts);
+      }
       $('body').on('change', '#num_meals', changeNumMeals);
       $('body').on('click', '.card__button', toggleViewMoreRecipe);
       $('body').on('click', '.fab', onFabButtonClick);

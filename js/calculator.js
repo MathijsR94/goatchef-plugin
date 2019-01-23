@@ -1,11 +1,8 @@
 (function($) {
   $(document).ready(function() {
-    var form = $('#homepage-calculator');
-    var localStorageKcal =
-      (!isNaN(localStorage.getItem('kcal')) &&
-        JSON.parse(localStorage.getItem('kcal'))) ||
-      2500;
-    var localStorageNumMeals = JSON.parse(localStorage.getItem('numMeals'));
+    const form = $('#homepage-calculator');
+    const localStorageKcal = GoatchefSingleton.getKcal();
+    const localStorageNumMeals = GoatchefSingleton.getNumMeals();
 
     if (localStorageKcal > 0) {
       $('#num_cal').val(localStorageKcal);
@@ -21,29 +18,35 @@
     $('#num_cal').on('change', setKcal);
     $('#num_cal').on('input', setKcal);
     $('#homepage-calculator select').on('change', calculate);
-
     $('#add-kcal').click(addKcalToForm);
 
+    /**
+     * Sets the kcal on input/change
+     */
     function setKcal() {
-      var value = $(this).val();
+      const value = $(this).val();
       localStorage.setItem('kcal', value);
       GoatchefSingleton.dispatchEvent('updateTotalKcal', value);
     }
+    /**
+     * sets total calories in the calc form
+     */
     function calculate() {
-      var age = parseInt($('#age').val()) || 0;
-      var length = parseInt($('#length').val()) || 0;
-      var weight = parseFloat($('#weight').val()) || 0;
-      var gender = $('#gender .selected').data('gender');
-      var kcal = 0;
+      const age = parseInt($('#age').val()) || 0;
+      const length = parseInt($('#length').val()) || 0;
+      const weight = parseFloat($('#weight').val()) || 0;
+      const gender = $('#gender .selected').data('gender');
+      let kcal = 0;
+      let harrisBenedict;
 
       switch (gender) {
         case 'male':
-          var harrisBenedict =
+          harrisBenedict =
             88.362 + 13.397 * weight + 4.799 * length - 5.677 * age;
           kcal = calculateKcalFromFormula(harrisBenedict);
           break;
         case 'female':
-          var harrisBenedict =
+          harrisBenedict =
             447.593 + 9.247 * weight + 3.098 * length - 4.33 * age;
           kcal = calculateKcalFromFormula(harrisBenedict);
           break;
@@ -55,11 +58,14 @@
         GoatchefSingleton.dispatchEvent('updateTotalKcal', kcal);
       }
     }
-
+    /**
+     * Calculates kcal based on the Harris Benedict formula
+     * @param {number} harrisBenedict
+     */
     function calculateKcalFromFormula(harrisBenedict) {
-      var goal = parseInt($('#goal').val());
-      var workSelect = parseFloat($('#workSelect').val());
-      var sportSelect = parseFloat($('#sportSelect').val());
+      const goal = parseInt($('#goal').val());
+      const workSelect = parseFloat($('#workSelect').val());
+      const sportSelect = parseFloat($('#sportSelect').val());
 
       if (workSelect !== -1 && sportSelect === -1 && goal !== -1) {
         return Math.round(harrisBenedict * workSelect + goal);
@@ -122,7 +128,9 @@
           position: 'static'
         });
     }
-
+    /**
+     * Sets kcal
+     */
     function addKcalToForm() {
       $('#num_cal').val($('#total-calories').val());
       localStorage.setItem('kcal', $('#total-calories').val());
