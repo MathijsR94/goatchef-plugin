@@ -116,7 +116,6 @@ var GoatchefSingleton = (function() {
   }
 
   function calculateProteinNeeded() {
-    console.log(weight * macros[macroMap[goal]].factor.protein);
     return weight * macros[macroMap[goal]].factor.protein;
   }
 
@@ -125,10 +124,9 @@ var GoatchefSingleton = (function() {
   }
 
   function calculateCarbsNeeded() {
-    var userKcal = calculateTotalKcal(kcal);
     var proteinNeeded = calculateProteinNeeded();
     var fatNeeded = calculateFatNeeded();
-    console.log({ totalKcal, proteinNeeded, fatNeeded });
+    totalKcal = parseInt(localStorage.getItem('kcal'));
     return (totalKcal - (proteinNeeded * 4 + fatNeeded * 9)) / 4;
   }
 
@@ -165,9 +163,6 @@ var GoatchefSingleton = (function() {
         selectedRecipes = selectedRecipes;
       }
     },
-    setGoal: function(goal) {
-      goal = parseInt(goal);
-    },
     setKcal: function(kcalObj, type) {
       if (kcal[type]) {
         kcal[type] = {
@@ -185,7 +180,15 @@ var GoatchefSingleton = (function() {
         completedRecipes.push(type);
       }
     },
-    calculateTotalKcal: calculateTotalKcal
+    calculateTotalKcal: calculateTotalKcal,
+    setWeight: function(newWeight) {
+      weight = newWeight;
+      dispatchEvent('updateMacros', null);
+    },
+    setGoal: function(newGoal) {
+      goal = newGoal;
+      dispatchEvent('updateMacros', null);
+    }
   };
 })();
 

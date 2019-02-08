@@ -306,7 +306,6 @@
     }
 
     function checkIfRecipesShouldBeHidden(value) {
-      console.log('joe');
       if (!value) {
         value = '';
       }
@@ -323,7 +322,6 @@
         var hasIngredient = recipe.ingredients.some(function(ingredient) {
           return regex.test(ingredient.ingredient_title);
         });
-        console.log(macros[mappedGoal], mappedGoal);
         var carbs = userKcal.carbs;
         var carbsNeeded = kcal * macros[mappedGoal].gram.carbs;
         var recipeCarbs = recipe.nutrition.find(function(n) {
@@ -368,8 +366,6 @@
 
         return recipe;
       });
-
-      console.log(currentIndex);
 
       recipes = filteredRecipes;
 

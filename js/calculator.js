@@ -50,9 +50,16 @@
       }
 
       if (age && length && weight) {
+        var goal = $('#goal').val();
         $('#total-calories').val(kcal);
         localStorage.setItem('kcal', kcal);
         GoatchefSingleton.dispatchEvent('updateTotalKcal', kcal);
+        GoatchefSingleton.setWeight(parseFloat($('#weight').val()));
+        GoatchefSingleton.dispatchEvent('updateTotalKcal', kcal);
+        console.log({ goal });
+        if (goal !== '-1') {
+          GoatchefSingleton.setGoal($('#goal').val());
+        }
       }
     }
 
@@ -129,6 +136,9 @@
       localStorage.setItem('goal', $('#goal').val());
       localStorage.setItem('weight', parseFloat($('#weight').val()));
       $('#homepage-calculator').modal('toggle');
+
+      GoatchefSingleton.setWeight(parseFloat($('#weight').val()));
+      GoatchefSingleton.setGoal($('#goal').val());
     }
   });
 })(jQuery);

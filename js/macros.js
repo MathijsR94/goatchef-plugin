@@ -31,6 +31,10 @@
       setProgress();
     });
 
+    document.addEventListener('updateMacros', function(e) {
+      setProgress();
+    });
+
     function setProgress() {
       var carbs = userKcal.carbs;
       var carbsNeeded = user.calculateCarbsNeeded();
@@ -40,15 +44,6 @@
       var fatNeeded = user.calculateFatNeeded();
       var totalKcal = user.calculateTotalKcalNeeded();
 
-      // console.log({
-      //   carbs,
-      //   carbsNeeded,
-      //   protein,
-      //   proteinNeeded,
-      //   fat,
-      //   fatNeeded,
-      //   totalKcal
-      // });
       // Carbs
       setProgressBarValues({
         el: $('progress.macro-1'),
@@ -102,7 +97,6 @@
   });
 
   function setProgressBarValues({ el, amountNeeded, value, unit }) {
-    console.log({ amountNeeded, value, unit });
     $(el)
       .attr('max', amountNeeded)
       .attr('value', value)

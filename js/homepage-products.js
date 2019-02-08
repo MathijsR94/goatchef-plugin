@@ -439,7 +439,6 @@
       Object.keys(currentSelectedRecipes).forEach(function(mealType) {
         if (currentSelectedRecipes[mealType]) {
           var recipe = recipes.find(function(r) {
-            console.log(r.id, currentSelectedRecipes[mealType]);
             return r.id === currentSelectedRecipes[mealType];
           });
 
